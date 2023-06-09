@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="modal-dialog modal-lg mt-3">
+        <div class="modal-content">
+            <form action="/details" method="post">
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert" th:if="${request.getHandled() == false}">
+                        New unhandled request
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleFormControlInput1">Name:</label>
+                        <input class="form-control" disabled id="exampleFormControlInput1" name="userName"
+                               th:value="${request.getUserName()}"
+                               type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleFormControlSelect1">Course:</label>
+                        <select aria-label="Default select example" class="form-select" disabled id="exampleFormControlSelect1"
+                                name="course">
+                            <option selected th:text="${request.getCourse().getName()}"
+                                    th:value="${request.getCourse().getId()}"></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleFormControlNumber2">Phone number:</label>
+                        <input class="form-control" disabled id="exampleFormControlNumber2" name="phoneNumber"
+                               th:value="${request.getPhoneNumber()}"
+                               type="number">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleFormControlTextarea2">Description:</label>
+                        <textarea class="form-control" disabled id="exampleFormControlTextarea2" name="description"
+                                  th:text="${request.getDescription()}" type="text">
+                        </textarea>
+                    </div>
+                    <input name="id" th:value="${request.getId()}" type="hidden">
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-primary" name="action" th:if="${request.getHandled() == false}" type="submit"
+                           value="Handle">
+                    <input class="btn btn-danger" name="action" type="submit" value="Delete">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

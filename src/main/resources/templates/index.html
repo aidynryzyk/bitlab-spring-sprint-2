@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row row-cols-2 row-cols-md-2 g-4">
+        <div class="col" th:each="request : ${requests}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Request from:
+                        <b th:text="${request.getUserName()} "></b>
+                        <span class="badge bg-danger" th:if="${request.getHandled() == false}">  New</span>
+                    </h5>
+                    <p class="card-text">Course: <b th:text="${request.getCourse().getName()}"></b></p>
+                    <p class="card-text"
+                       th:text="${request.getDescription().length()} > 65 ? ${request.getDescription().substring(0, 65)} + '...' : ${request.getDescription()}"></p>
+                    <p class="card-text">Phone: <b th:text="${request.getPhoneNumber()}"></b></p>
+                    <a class="btn btn-primary" th:href="'/details?id=' + ${request.getId()}">Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

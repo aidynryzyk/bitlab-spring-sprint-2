@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="modal-dialog modal-lg mt-3">
+        <div class="modal-content">
+            <form action="/addCourse" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleFormControlInput1">Course name:</label>
+                        <input class="form-control" id="exampleFormControlInput1" name="name" placeholder="Name"
+                               type="text">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

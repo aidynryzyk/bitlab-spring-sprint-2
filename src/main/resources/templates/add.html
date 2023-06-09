@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="modal-dialog modal-lg mt-3">
+        <div class="modal-content">
+            <form action="/add" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleFormControlInput1">Name:</label>
+                        <input class="form-control" id="exampleFormControlInput1" name="userName" placeholder="Name"
+                               type="text">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleFormControlSelect1">Course:</label>
+                        <select aria-label="Default select example" class="form-select" id="exampleFormControlSelect1"
+                                name="course">
+                            <span th:each="course : ${courses}">
+                                <option th:text="${course.getName()}" th:value="${course.getId()}"></option>
+                            </span>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleFormControlNumber2">Phone number:</label>
+                        <input class="form-control" id="exampleFormControlNumber2" name="phoneNumber" value="+7"
+                               type="number">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="exampleFormControlTextarea2">Description:</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea2" name="description"
+                                  type="text">
+                        </textarea>
+                    </div>
+                    <input type="hidden" name="handled" value="false">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
